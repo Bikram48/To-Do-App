@@ -13,7 +13,7 @@
 <body>
    
     <div class="container">
-        <h2 style="font-size:20px; font-weight: bolder;">Update Task</h2><br>
+        <h2>Update Task</h2><br>
         <?php 
         if(isset($_GET['id'])){
             $task_id=$_GET['id'];
@@ -22,16 +22,12 @@
                 mysqli_stmt_bind_param($query,"s",$task_id);
                 mysqli_stmt_bind_result($query,$id,$task_name);
                 mysqli_stmt_execute($query);
-                mysqli_stmt_fetch($query);
-                
-           
+                mysqli_stmt_fetch($query);   
     ?>
         <form action="../backend/updatetask.php?id=<?php echo $id; ?>" method="POST">
             <div class="row">
                 <div class="col-xl-4">
-            
-                    <input type="text" class="form-control"  name="task_name" value="<?php echo $task_name; ?>">
-                 
+                    <input type="text" class="form-control"  name="task_name" value="<?php echo $task_name; ?>"> 
                 </div>
                 <div class="col-sm-4 col-xl-4 ">
                     <input type="submit" value="UPDATE" name="update_btn"/>

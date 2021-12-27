@@ -29,7 +29,7 @@
        
     ?>
     <div class="container">
-        <h2 style="font-size:20px; font-weight: bolder;">To-do-Task App</h2><br>
+        <h2>To-do-Task App</h2><br>
         <form action="../backend/addtask.php" method="POST" >
             <div class="row">
                 <div class="col-xl-4">
@@ -50,7 +50,7 @@
            
         </form><br> 
         <form action="../backend/removetask.php" method="POST">
-        <div style="margin-left:20px;" class="form-group">   
+        <div class="form-group task_displayer">   
         <?php
             $query=mysqli_prepare($db_connection,"SELECT * FROM todotask");
             if($query){
@@ -61,7 +61,7 @@
               <div class="row">   
                 <div class="col-sm-offset-2 col-xl-4">
                     <div class="checkbox">
-                        <label><input type="checkbox" value="<?php echo $id; ?>" name="ids[]"><span style="margin-left:20px;"><?php echo $task_name; ?></span></label>
+                        <label><input type="checkbox" value="<?php echo $id; ?>" name="ids[]"><span id="task_name"><?php echo $task_name; ?></span></label>
                     </div>
                 </div>
                 <div class="col-xl-2">
