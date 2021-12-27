@@ -12,16 +12,23 @@
 <body>
     <div class="container">
         <h2 style="font-size:20px; font-weight: bolder;">To-do-Task App</h2><br>
-        <form action="<?php echo $_SERVER['PHP_SELF'];?>" >
+        <form action="../backend/addtask.php" method="POST" >
             <div class="row">
                 <div class="col-xl-4">
-                    <input type="email" class="form-control" id="email" placeholder="Enter Task" name="email">
+                    <input type="text" class="form-control"  placeholder="Enter Task" name="taskname">
                 </div>
                 <div class="col-sm-4 col-xl-4 ">
                         <input type="submit" name="submit_btn"/>
                 </div>
              
             </div>
+            <p id="error_display">
+                <?php
+                    if(isset($_GET['error'])=="field_empty"){
+                        echo "Please enter any task";
+                    }
+                ?>
+            </p>
            
         </form><br> 
         <div style="margin-left:20px;" class="form-group">   

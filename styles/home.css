@@ -2,6 +2,12 @@ h2{
 
     font-weight: bolder;
 }
+
+#error_display{
+    color:red;
+    font-size: 10px;
+    font-weight: bolder;
+}
 .container{
     margin: auto;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
