@@ -1,3 +1,6 @@
+<?php
+    require "../backend/db_connect.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,11 +34,19 @@
             </p>
            
         </form><br> 
+        <form action="../backend/removetask.php" method="POST">
         <div style="margin-left:20px;" class="form-group">   
-            <div class="row">   
+        <?php
+            $query=mysqli_prepare($db_connection,"SELECT * FROM todotask");
+            if($query){
+                mysqli_stmt_bind_result($query,$id,$task_name);
+                mysqli_stmt_execute($query);
+                while(mysqli_stmt_fetch($query)){
+            ?>
+              <div class="row">   
                 <div class="col-sm-offset-2 col-xl-4">
                     <div class="checkbox">
-                        <label><input type="checkbox" name="remember"> Task 1</label>
+                        <label><input type="checkbox" value="<?php echo $id; ?>" name="ids[]"><span style="margin-left:20px;"><?php echo $task_name; ?></span></label>
                     </div>
                 </div>
                 <div class="col-xl-2">
@@ -43,29 +54,15 @@
                     <i class="fas fa-times"></i>
                 </div>
             </div>  
-            <div class="row">   
-                <div class="col-sm-offset-2 col-xl-4">
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="remember"> Task 1</label>
-                    </div>
-                </div>
-                <div class="col-xl-2">
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-times"></i>
-                </div>
-            </div>  
-            <div class="row">   
-                <div class="col-sm-offset-2 col-xl-4">
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="remember"> Task 1</label>
-                    </div>
-                </div>
-                <div class="col-xl-2">
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-times"></i>
-                </div>
-            </div>  
+            <?php        
+                }
+            }
+        ?>
+          
         </div>
+        <input type="submit" name="delete_task_btn" value="DELETE SELECTED"/>
+        </form>
+
     </div>
 <!--
 <div class="container">
