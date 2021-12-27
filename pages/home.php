@@ -12,7 +12,22 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Document</title>
 </head>
-<body>
+<body> 
+    <?php
+        if(isset($_GET['success'])){
+            if($_GET['success']=="updatesuccess"){
+                echo '<script type="text/javascript">alert("Your task has been updated successfully");</script>';
+            }
+            if($_GET['success']=="deletesuccess"){
+                echo '<script type="text/javascript">alert("Selected task has been removed successfully");</script>';
+            }
+            if($_GET['success']=="insertsuccess"){
+                echo '<script type="text/javascript">alert("New task has been added successfully");</script>';
+            }
+        }
+       
+       
+    ?>
     <div class="container">
         <h2 style="font-size:20px; font-weight: bolder;">To-do-Task App</h2><br>
         <form action="../backend/addtask.php" method="POST" >
@@ -50,8 +65,7 @@
                     </div>
                 </div>
                 <div class="col-xl-2">
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-times"></i>
+                    <a href="edit_task.php?id=<?php echo $id; ?>"><i class="fas fa-edit" ></i></a>
                 </div>
             </div>  
             <?php        
@@ -64,38 +78,6 @@
         </form>
 
     </div>
-<!--
-<div class="container">
-<div class="col-xl-2">
-</div>
-<div class="col-xl-8">
-<div class="row">
-<form  action="">
-<div class="form-group">
-    <input type="text" name="new_task" placeholder='Add new task'/>
-    <input type="submit" name="submit_btn"/>
-</div>
 
-</form>
-</div>
-<div class="row">
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <div class="checkbox">
-        <input type="checkbox" name="selected_task"/>Hello
-        </div>
-    
-    </div>
-
-
-<i class="fas fa-times"></i>
-</div>
-</div>
-</div>
-<div class="col-xl-2">
-
-</div>
-</div> 
--->
 </body>
 </html>

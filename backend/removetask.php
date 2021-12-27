@@ -11,7 +11,7 @@
                     mysqli_stmt_bind_param($query,"s",$id);
                     mysqli_stmt_execute($query);
                     header("Location:../pages/home.php?success=deletesuccess");
-                    echo "Data deleted succssfully";
+                 
                 }else{
                     echo "Error occured";
                 }
