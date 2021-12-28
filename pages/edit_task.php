@@ -11,19 +11,18 @@
     <title>Document</title>
 </head>
 <body>
-   
     <div class="container">
         <h2>Update Task</h2><br>
         <?php 
-        if(isset($_GET['id'])){
-            $task_id=$_GET['id'];
-            $query=mysqli_prepare($db_connection,"SELECT * FROM todotask WHERE id=?");
-            if($query){
-                mysqli_stmt_bind_param($query,"s",$task_id);
-                mysqli_stmt_bind_result($query,$id,$task_name);
-                mysqli_stmt_execute($query);
-                mysqli_stmt_fetch($query);   
-    ?>
+            if( isset($_GET['id']) ){
+                $task_id=$_GET['id'];
+                $query=mysqli_prepare( $db_connection,"SELECT * FROM todotask WHERE id=?" );
+                if( $query ){
+                    mysqli_stmt_bind_param( $query,"s",$task_id );
+                    mysqli_stmt_bind_result( $query,$id,$task_name );
+                    mysqli_stmt_execute( $query );
+                    mysqli_stmt_fetch( $query );   
+        ?>
         <form action="../backend/updatetask.php?id=<?php echo $id; ?>" method="POST">
             <div class="row">
                 <div class="col-xl-4">
@@ -35,16 +34,16 @@
             </div>
             <p id="error_display">
                 <?php
-                    if(isset($_GET['error'])=="field_empty"){
+                    if( isset($_GET['error'])=="field_empty" ){
                         echo "Please enter any task";
                     }
                 ?>
             </p>
         </form><br> 
         <?php
-                         }
-                        }
-                    ?>
+                }
+            }
+        ?>
     </div>
 </body>
 </html>
