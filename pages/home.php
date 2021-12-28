@@ -14,22 +14,20 @@
 </head>
 <body> 
     <?php
-        if(isset($_GET['success'])){
-            if($_GET['success']=="updatesuccess"){
+        if( isset($_GET['success']) ){
+            if( $_GET['success']=="updatesuccess" ){
                 echo '<script type="text/javascript">alert("Your task has been updated successfully");</script>';
             }
-            if($_GET['success']=="deletesuccess"){
+            if( $_GET['success']=="deletesuccess" ){
                 echo '<script type="text/javascript">alert("Selected task has been removed successfully");</script>';
             }
-            if($_GET['success']=="insertsuccess"){
+            if( $_GET['success']=="insertsuccess" ){
                 echo '<script type="text/javascript">alert("New task has been added successfully");</script>';
             }
-        }
-       
-       
+        }  
     ?>
     <div class="container">
-        <h2 style="font-size:20px; font-weight: bolder;">To-do-Task App</h2><br>
+        <h2>To-do-Task App</h2><br>
         <form action="../backend/addtask.php" method="POST" >
             <div class="row">
                 <div class="col-xl-4">
@@ -38,30 +36,28 @@
                 <div class="col-sm-4 col-xl-4 ">
                         <input type="submit" name="submit_btn"/>
                 </div>
-             
             </div>
             <p id="error_display">
                 <?php
-                    if(isset($_GET['error'])=="field_empty"){
+                    if( isset($_GET['error'])=="field_empty" ){
                         echo "Please enter any task";
                     }
                 ?>
-            </p>
-           
+            </p> 
         </form><br> 
         <form action="../backend/removetask.php" method="POST">
-        <div style="margin-left:20px;" class="form-group">   
+        <div class="form-group task_displayer">   
         <?php
-            $query=mysqli_prepare($db_connection,"SELECT * FROM todotask");
+            $query=mysqli_prepare( $db_connection,"SELECT * FROM todotask" );
             if($query){
-                mysqli_stmt_bind_result($query,$id,$task_name);
-                mysqli_stmt_execute($query);
-                while(mysqli_stmt_fetch($query)){
+                mysqli_stmt_bind_result( $query,$id,$task_name );
+                mysqli_stmt_execute( $query );
+                while(mysqli_stmt_fetch( $query )){
             ?>
               <div class="row">   
                 <div class="col-sm-offset-2 col-xl-4">
                     <div class="checkbox">
-                        <label><input type="checkbox" value="<?php echo $id; ?>" name="ids[]"><span style="margin-left:20px;"><?php echo $task_name; ?></span></label>
+                        <label><input type="checkbox" value="<?php echo $id; ?>" name="ids[]"><span id="task_name"><?php echo $task_name; ?></span></label>
                     </div>
                 </div>
                 <div class="col-xl-2">
@@ -71,13 +67,10 @@
             <?php        
                 }
             }
-        ?>
-          
+        ?>   
         </div>
         <input type="submit" name="delete_task_btn" value="DELETE SELECTED"/>
         </form>
-
     </div>
-
 </body>
 </html>
